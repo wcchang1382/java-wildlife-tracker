@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EndangeredAnimal extends Animal{
-
-  public boolean endangered;
+  //public boolean endangered; --> removed
   private String health;
   private String age;
+  public static final String DATABASE_TYPE = "endangered";
 
   public EndangeredAnimal(String name, String health, String age) {
     this.name = name;

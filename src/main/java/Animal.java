@@ -5,6 +5,7 @@ import java.util.List;
 public abstract class Animal {
   public String name;
   public int id;
+  public String conservationStatus;
 
 // Remove Animal constructor because Animal becomes an abstract class.
   // public Animal(String name) {
