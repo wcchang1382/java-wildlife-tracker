@@ -2,14 +2,15 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal {
+public abstract class Animal {
   public String name;
   public int id;
 
-  public Animal(String name) {
-    this.name = name;
-    this.id = id;
-  }
+// Remove Animal constructor because Animal becomes an abstract class.
+  // public Animal(String name) {
+  //   this.name = name;
+  //   this.id = id;
+  // }
 
   public String getName() {
     return name;

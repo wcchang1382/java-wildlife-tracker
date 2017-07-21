@@ -2,9 +2,8 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EndangeredAnimal {
-  public String name;
-  public int id;
+public class EndangeredAnimal extends Animal{
+
   public boolean endangered;
   private String health;
   private String age;
