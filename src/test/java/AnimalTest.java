@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Arrays;
 
 public class AnimalTest {
+
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
   @Test
-  public void animal_instantiatesCorrectly_false() {
+  public void animal_instantiatesCorrectly_true() {
     Animal testAnimal = new Animal("Deer");
     assertEquals(true, testAnimal instanceof Animal);
   }
@@ -22,7 +23,7 @@ public class AnimalTest {
   }
 
   @Test
-  public void equals_returnsTrueIfNameIsTheSame_false() {
+  public void equals_returnsTrueIfNameIsTheSame_true() {
     Animal firstAnimal = new Animal("Deer");
     Animal anotherAnimal = new Animal("Deer");
     assertTrue(firstAnimal.equals(anotherAnimal));
@@ -37,7 +38,7 @@ public class AnimalTest {
   }
 
   @Test
-  public void all_returnsAllInstancesOfAnimal_false() {
+  public void all_returnsAllInstancesOfAnimal_true() {
     Animal firstAnimal = new Animal("Deer");
     firstAnimal.save();
     Animal secondAnimal = new Animal("Black Bear");
