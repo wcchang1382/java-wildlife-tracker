@@ -4,9 +4,7 @@ import java.util.List;
 
 public class EndangeredAnimal extends Animal{
   //public boolean endangered; --> removed
-  private String health;
-  private String age;
-  public static final DATABASE_TYPE = "endangered";
+  public static final String DATABASE_TYPE = "endangered";
 
   public EndangeredAnimal(String name, String health, String age) {
     this.name = name;
@@ -25,7 +23,8 @@ public class EndangeredAnimal extends Animal{
       return this.getId() == newEndangeredAnimal.getId() &&
              this.getName().equals(newEndangeredAnimal.getName()) &&
              this.getHealth().equals(newEndangeredAnimal.getHealth()) &&
-             this.getAge().equals(newEndangeredAnimal.getAge());
+             this.getAge().equals(newEndangeredAnimal.getAge()) &&
+             this.getType().equals(newEndangeredAnimal.getType());
     }
   }
 

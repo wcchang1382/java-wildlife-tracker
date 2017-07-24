@@ -3,9 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeastConcernAnimal extends Animal{
-  private String health;
-  private String age;
-  public static final DATABASE_TYPE = "leastconcern";
+  public static final String DATABASE_TYPE = "leastconcern";
 
   public LeastConcernAnimal(String name, String health, String age) {
     this.name = name;
@@ -24,13 +22,14 @@ public class LeastConcernAnimal extends Animal{
       return this.getId() == newLeastConcernAnimal.getId() &&
              this.getName().equals(newLeastConcernAnimal.getName()) &&
              this.getHealth().equals(newLeastConcernAnimal.getHealth()) &&
-             this.getAge().equals(newLeastConcernAnimal.getAge());
+             this.getAge().equals(newLeastConcernAnimal.getAge()) &&
+             this.getType().equals(newLeastConcernAnimal.getType());
     }
   }
 
   public static List<LeastConcernAnimal> all() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM animals WHERE type = 'endangered';";
+      String sql = "SELECT * FROM animals WHERE type = 'leastconcern';";
       return con.createQuery(sql)
         .executeAndFetch(LeastConcernAnimal.class);
     }
@@ -39,10 +38,10 @@ public class LeastConcernAnimal extends Animal{
   public static LeastConcernAnimal find(int id) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM animals WHERE id=:id;";
-      LeastConcernAnimal endangeredanimal = con.createQuery(sql)
+      LeastConcernAnimal leastconcernanimal = con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetchFirst(LeastConcernAnimal.class);
-      return endangeredanimal;
+      return leastconcernanimal;
     }
   }
 
