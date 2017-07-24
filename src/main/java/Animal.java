@@ -5,7 +5,9 @@ import java.util.List;
 public abstract class Animal {
   public String name;
   public int id;
-  public String conservationStatus;
+  public String health;
+  public String age;
+  public String type;
 
 // Remove Animal constructor because Animal becomes an abstract class.
   // public Animal(String name) {
@@ -21,43 +23,58 @@ public abstract class Animal {
     return id;
   }
 
-  @Override
-  public boolean equals(Object otherAnimal) {
-    if(!(otherAnimal instanceof Animal)) {
-      return false;
-    } else {
-      Animal newAnimal = (Animal) otherAnimal;
-      return this.getName().equals(newAnimal.getName());
-    }
+  public String getHealth() {
+    return health;
   }
+
+  public String getAge() {
+    return age;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  // @Override
+  // public boolean equals(Object otherAnimal) {
+  //   if(!(otherAnimal instanceof Animal)) {
+  //     return false;
+  //   } else {
+  //     Animal newAnimal = (Animal) otherAnimal;
+  //     return this.getName().equals(newAnimal.getName());
+  //   }
+  // }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO animals (name) VALUES (:name);";
+      String sql = "INSERT INTO animals (name, health, age, type) VALUES (:name, :health, :age, :type);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
+        .addParameter("health", this.health)
+        .addParameter("age", this.age)
+        .addParameter("type", this.type)
         .executeUpdate()
         .getKey();
     }
   }
 
-  public static List<Animal> all() {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM animals;";
-      return con.createQuery(sql)
-        .executeAndFetch(Animal.class);
-    }
-  }
-
-  public static Animal find(int id) {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM animals WHERE id=:id;";
-      Animal animal = con.createQuery(sql)
-        .addParameter("id", id)
-        .executeAndFetchFirst(Animal.class);
-      return animal;
-    }
-  }
+  // public static List<Animal> all() {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql = "SELECT * FROM animals;";
+  //     return con.createQuery(sql)
+  //       .executeAndFetch(Animal.class);
+  //   }
+  // }
+  //
+  // public static Animal find(int id) {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql = "SELECT * FROM animals WHERE id=:id;";
+  //     Animal animal = con.createQuery(sql)
+  //       .addParameter("id", id)
+  //       .executeAndFetchFirst(Animal.class);
+  //     return animal;
+  //   }
+  // }
 
   public void updateName(String name) {
     try(Connection con = DB.sql2o.open()) {
