@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.sql.Timestamp;
 import java.util.Timer;
+import java.text.DateFormat;
 
 public class Sighting {
   private int animal_id;
@@ -13,6 +14,9 @@ public class Sighting {
   private Timestamp glimpse;
 
   public Sighting(int animal_id, String location, String ranger_name) {
+    if(location.equals("") || ranger_name.equals("")) {
+      throw new IllegalArgumentException("Please fill in all forms");
+    }
     this.animal_id = animal_id;
     this.location = location;
     this.ranger_name = ranger_name;
@@ -33,6 +37,10 @@ public class Sighting {
 
   public String getRangerName() {
     return ranger_name;
+  }
+
+  public String getGlimpse() {
+    return DateFormat.getDateTimeInstance().format(glimpse);
   }
 
   @Override

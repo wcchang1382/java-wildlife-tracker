@@ -13,7 +13,7 @@ public class App {
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("animals", Animal.all());
+      model.put("animals", LeastConcernAnimal.all());
       model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("sightings", Sighting.all());
       model.put("template", "templates/index.vtl");
@@ -25,9 +25,13 @@ public class App {
       String rangerName = request.queryParams("rangerName");
       int animalIdSelected = Integer.parseInt(request.queryParams("endangeredAnimalSelected"));
       String latLong = request.queryParams("latLong");
-      Sighting sighting = new Sighting(animalIdSelected, latLong, rangerName);
-      sighting.save();
-      model.put("sighting", sighting);
+      try {
+        Sighting sighting = new Sighting(animalIdSelected, latLong, rangerName);
+        sighting.save();
+        model.put("sighting", sighting);
+      } catch (IllegalArgumentException exception) {
+        response.redirect("/error");
+      }
       model.put("animals", EndangeredAnimal.all());
       String animal = EndangeredAnimal.find(animalIdSelected).getName();
       model.put("animal", animal);
@@ -40,11 +44,15 @@ public class App {
       String rangerName = request.queryParams("rangerName");
       int animalIdSelected = Integer.parseInt(request.queryParams("animalSelected"));
       String latLong = request.queryParams("latLong");
-      Sighting sighting = new Sighting(animalIdSelected, latLong, rangerName);
-      sighting.save();
-      model.put("sighting", sighting);
-      model.put("animals", Animal.all());
-      String animal = Animal.find(animalIdSelected).getName();
+      try {
+        Sighting sighting = new Sighting(animalIdSelected, latLong, rangerName);
+        sighting.save();
+        model.put("sighting", sighting);
+      } catch (IllegalArgumentException exception) {
+        response.redirect("/error");
+      }
+      model.put("animals", LeastConcernAnimal.all());
+      String animal = LeastConcernAnimal.find(animalIdSelected).getName();
       model.put("animal", animal);
       model.put("template", "templates/success.vtl");
       return new ModelAndView(model, layout);
@@ -52,7 +60,7 @@ public class App {
 
     get("/animal/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("animals", Animal.all());
+      model.put("animals", LeastConcernAnimal.all());
       model.put("endangeredAnimals", EndangeredAnimal.all());
       model.put("template", "templates/animal-form.vtl");
       return new ModelAndView(model, layout);
@@ -61,28 +69,33 @@ public class App {
     post("/animal/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       boolean endangered = request.queryParamsValues("endangered")!=null;
+      String name = request.queryParams("name");
+      String health = request.queryParams("health");
+      String age = request.queryParams("age");
       if (endangered) {
-        String name = request.queryParams("name");
-        String health = request.queryParams("health");
-        String age = request.queryParams("age");
+        try {
         EndangeredAnimal endangeredAnimal = new EndangeredAnimal(name, health, age);
         endangeredAnimal.save();
-        model.put("animals", Animal.all());
-        model.put("endangeredAnimals", EndangeredAnimal.all());
+        } catch (IllegalArgumentException exception) {
+          response.redirect("/error");
+        }
       } else {
-        String name = request.queryParams("name");
-        Animal animal = new Animal(name);
-        animal.save();
-        model.put("animals", Animal.all());
-        model.put("endangeredAnimals", EndangeredAnimal.all());
+        try {
+        LeastConcernAnimal leastConcernAnimal = new LeastConcernAnimal(name, health, age);
+        leastConcernAnimal.save();
+        } catch (IllegalArgumentException exception) {
+          response.redirect("/error");
+        }
       }
+      model.put("animals", LeastConcernAnimal.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
       response.redirect("/");
         return null;
       });
 
     get("/animal/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      Animal animal = Animal.find(Integer.parseInt(request.params("id")));
+      LeastConcernAnimal animal = LeastConcernAnimal.find(Integer.parseInt(request.params("id")));
       model.put("animal", animal);
       model.put("template", "templates/animal.vtl");
       return new ModelAndView(model, layout);
