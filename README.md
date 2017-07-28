@@ -70,9 +70,9 @@ Go back to your terminal window and enter the following:
 ## Specifications
 |Behavior|Input|Output|
 |---|---|---|
-|The Ranger-user can add a new Animal to the system and specify whether it is endangered or not.|Select `Add Animal to System`; Animal Species: 'Badger'; `Endangered` checkbox is checked; Select `Health: Ill`, `Age: Newborn`; click `Add Animal`|Endangered Animal Sightings: Badger; 0 Reported Sightings|
-|The Ranger-user can submit a report on a sighting of a least concern or endangered animal.|Under 'Report Endangered Animal Sightings', select Animal `Badger`; input `Location` Zone B; input Ranger-user's name `William`; click `Submit Report`|'The Badger's sighting was successfully recorded.'|
-|The Ranger-user can view recorded sightings in detail.|Under `Endangered Animal Sightings: Badger, 1 Reported Sighting(s)`, click link for details.|'Badger; Health: Ill; Age: Newborn; Sightings: Location: Zone B, Reported by: William, Sighting Timestamp: Jul 27, 2017 11:36:30 PM'|
+|The Ranger-user can add a new Animal to the system and specify whether it is endangered or not|Select `Add Animal to System`; Animal Species: 'Badger'; `Endangered` checkbox is checked; Select `Health: Ill`, `Age: Newborn`; click `Add Animal`|_Endangered Animal Sightings: Badger; 0 Reported Sightings_|
+|The Ranger-user can submit a report on a sighting of a least concern or endangered animal|Under 'Report Endangered Animal Sightings', select Animal `Badger`; input `Location` Zone B; input Ranger-user's name `William`; click `Submit Report`|_The Badger's sighting was successfully recorded_|
+|The Ranger-user can view recorded sightings in detail|Under `Endangered Animal Sightings: Badger, 1 Reported Sighting(s)`, click link for details|_Badger; Health: Ill; Age: Newborn; Sightings: Location: Zone B, Reported by: William, Sighting Timestamp: Jul 27, 2017 11:36:30 PM_|
 
 ## Modifications
 * _Converted Animal into an abstract class and created a new LeastConcernAnimal object that extends from the Animal class._
