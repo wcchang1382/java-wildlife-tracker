@@ -1,0 +1,42 @@
+body {
+  background: url('/background.jpg') no-repeat top right;
+  background-size: cover;
+  font-family: 'Candal', sans-serif;
+  color: white;
+  font-size: 150%;
+}
+
+a {
+  color: yellow;
+}
+
+label {
+  padding-left: 20px;
+}
+
+.big-label {
+  font-size: 170%;
+  padding-left: 20px;
+}
+
+input, textarea {
+  background-color: black;
+}
+
+.big-box {
+  width: 20px;
+  height: 20px;
+}
+
+option, textarea {
+  background-color: black;
+}
+
+select {
+  background-color: black;
+  padding-right: 30px;
+}
+
+.thumbnail {
+  background-color: black;
+}
