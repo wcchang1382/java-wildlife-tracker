@@ -49,7 +49,7 @@ java-wildlife-tracker
 
 ## Setup/Installation Requirements
 
-You will need [gradle](https://gradle.org/gradle-download/) and PostgreSQL installed on your device.
+You will need [Gradle](https://gradle.org/gradle-download/) and PostgreSQL installed on your device.
 
 Enter the following commands in your terminal:
 * `$ git clone https://github.com/wcchang1382/wildlife-tracker`;
