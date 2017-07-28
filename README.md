@@ -60,8 +60,8 @@ In PSQL:
 * `CREATE DATABASE wildlife_tracker;`
 * `\c wildlife_tracker;`
 * `CREATE TABLE animals (id serial PRIMARY KEY, name varchar, health varchar, age varchar, type varchar);`
-* `CREATE TABLE sightings (id serial PRIMARY KEY, animal_id int, location varchar, ranger_name varchar);`
-* `CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;`
+* `CREATE TABLE sightings (id serial PRIMARY KEY, animal_id int, location varchar, ranger_name varchar, glimpse timestamp);`
+* `CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;` (in case user wants to run gradle test)
 
 Go back to your terminal window and enter the following:
 * `gradle run` to run the application;
